@@ -17,7 +17,6 @@ public class ModItems {
                             .build())
             )
     );
-
     public static final RegistryObject<Item> ENCHANTED_GOLDEN_CHORUS_FRUIT = Registration.ITEMS.register("enchanted_golden_chorus_fruit", () ->
             new EnchantedGoldenChorusFruitItem(new Item.Properties().group(ItemGroup.MISC)
                     .food(new Food.Builder()

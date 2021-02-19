@@ -2,5 +2,9 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "choruswarps:item/golden_chorus_fruit"
-  }
+  },
+  "overrides": [
+    { "predicate": { "choruswarps:linked": 0.000 }, "model": "choruswarps:item/golden_chorus_fruit_unlinked" },
+    { "predicate": { "choruswarps:linked": 1.000 }, "model": "choruswarps:item/golden_chorus_fruit_linked" }
+  ]
 }
