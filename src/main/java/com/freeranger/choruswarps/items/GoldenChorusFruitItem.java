@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GoldenChorusFruitItem extends ChorusFruitItem {
     public GoldenChorusFruitItem(Properties builder) {
@@ -61,7 +62,16 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
                         nbt.getFloat("linked_y"),
                         nbt.getFloat("linked_z")
                 );
-                if(worldIn.isAirBlock(linkedBlockPos)){
+
+                RegistryKey<World> blockDimension = null;
+
+                ItemStack stack = playerIn.getHeldItem(handIn);
+                if(stack.getTag().getInt("dim") == 0) blockDimension = World.OVERWORLD;
+                else if(stack.getTag().getInt("dim") == -1) blockDimension = World.THE_NETHER;
+                else if(stack.getTag().getInt("dim") == 1) blockDimension = World.THE_END;
+
+                if(worldIn.isAirBlock(linkedBlockPos) && blockDimension != null
+                        && playerIn.world.getDimensionKey() == blockDimension){
                     nbt.remove("linked_x");
                     nbt.remove("linked_y");
                     nbt.remove("linked_z");
@@ -72,7 +82,8 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
 
                 Block linkedBlock = worldIn.getBlockState(linkedBlockPos).getBlock();
 
-                if(!(linkedBlock instanceof EnderLinkBlock)){
+                if(!(linkedBlock instanceof EnderLinkBlock) && blockDimension != null
+                        && playerIn.world.getDimensionKey() == blockDimension){
                     nbt.remove("linked_x");
                     nbt.remove("linked_y");
                     nbt.remove("linked_z");

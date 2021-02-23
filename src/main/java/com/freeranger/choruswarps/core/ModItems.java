@@ -13,7 +13,7 @@ public class ModItems {
                     .food(new Food.Builder()
                             .setAlwaysEdible()
                             .hunger(2)
-                            .saturation(2)
+                            .saturation(0)
                             .build())
             )
     );
@@ -22,7 +22,7 @@ public class ModItems {
                     .food(new Food.Builder()
                             .setAlwaysEdible()
                             .hunger(2)
-                            .saturation(2)
+                            .saturation(0)
                             .build())
             )
     );
