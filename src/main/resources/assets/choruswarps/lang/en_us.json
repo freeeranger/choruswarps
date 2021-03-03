@@ -1,5 +1,12 @@
 {
   "block.choruswarps.ender_link": "Ender Link",
   "item.choruswarps.golden_chorus_fruit": "Golden Chorus Fruit",
-  "item.choruswarps.enchanted_golden_chorus_fruit": "Enchanted Golden Chorus Fruit"
+  "item.choruswarps.enchanted_golden_chorus_fruit": "Enchanted Golden Chorus Fruit",
+
+  "tooltip.choruswarps.not_linked": "Not linked",
+  "tooltip.choruswarps.linked_to": "Linked to",
+  "tooltip.choruswarps.overworld": "Overworld",
+  "tooltip.choruswarps.nether": "Nether",
+  "tooltip.choruswarps.end": "End",
+  "tooltip.choruswarps.invalid_dimension": "Invalid Dimension"
 }

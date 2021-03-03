@@ -16,6 +16,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.TranslationTextComponentFormatException;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 
@@ -128,35 +130,41 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
             tooltip.remove(1);
         }
 
-        String dimension = "";
+        String dimension;
+        String notLinked = new TranslationTextComponent("tooltip.choruswarps.not_linked").getString();
+        String linkedTo = new TranslationTextComponent("tooltip.choruswarps.linked_to").getString();
+        String overworld = new TranslationTextComponent("tooltip.choruswarps.overworld").getString();
+        String nether = new TranslationTextComponent("tooltip.choruswarps.nether").getString();
+        String end = new TranslationTextComponent("tooltip.choruswarps.end").getString();
+        String invalidDimension = new TranslationTextComponent("tooltip.choruswarps.invalid_dimension").getString();
 
         if (stack.getTag() != null) {
             if(stack.getTag().contains("linked_x") && stack.getTag().contains("dim")){
                 int dim = stack.getTag().getInt("dim");
 
-                if(dim == 0) dimension = "Overworld";
-                else if(dim == -1) dimension = "Nether";
-                else if(dim == 1) dimension = "End";
+                if(dim == 0) dimension = overworld;
+                else if(dim == -1) dimension = nether;
+                else if(dim == 1) dimension = end;
                 else {
-                    dimension = "Not valid";
+                    dimension = invalidDimension;
                 }
 
                 tooltip.add(new StringTextComponent(
-                        "\u00A7fLinked to \u00A7e" +
+                        "\u00A7f" + linkedTo + " \u00A7e" +
                                 stack.getTag().getFloat("linked_x") + " " +
                                 stack.getTag().getFloat("linked_y") + " " +
                                 stack.getTag().getFloat("linked_z") +
                                 " \u00A7f(\u00A7e" + dimension + "\u00A7f)")
                 );
             }else{
-                if(tooltip.size() > 1)
-                    tooltip.set(1, new StringTextComponent("\u00A7fNot linked"));
-                else tooltip.add(1, new StringTextComponent("\u00A7fNot linked"));
+                if(tooltip.size() > 1) {
+                    tooltip.set(1, new StringTextComponent("\u00A7f"+notLinked));
+                }else tooltip.add(1, new StringTextComponent("\u00A7f"+notLinked));
             }
         }else{
             if(tooltip.size() > 1)
-                tooltip.set(1, new StringTextComponent("\u00A7fNot linked"));
-            else tooltip.add(1, new StringTextComponent("\u00A7fNot linked"));
+                tooltip.set(1, new StringTextComponent("\u00A7f"+notLinked));
+            else tooltip.add(1, new StringTextComponent("\u00A7f"+notLinked));
         }
     }
 

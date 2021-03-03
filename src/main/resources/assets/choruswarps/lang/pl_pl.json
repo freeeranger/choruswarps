@@ -1,0 +1,12 @@
+{
+  "block.choruswarps.ender_link": "Łącze Kresu",
+  "item.choruswarps.golden_chorus_fruit": "Złoty owoc Chorusu",
+  "item.choruswarps.enchanted_golden_chorus_fruit": "Zaklęty Złoty Owoc Chorusu",
+
+  "tooltip.choruswarps.not_linked": "Nie połączony",
+  "tooltip.choruswarps.linked_to": "Połączony z",
+  "tooltip.choruswarps.overworld": "Powierzchnia",
+  "tooltip.choruswarps.nether": "Nether",
+  "tooltip.choruswarps.end": "End",
+  "tooltip.choruswarps.invalid_dimension": "Nie poprawny wymiar"
+}
