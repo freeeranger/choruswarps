@@ -1,12 +1,12 @@
 {
-	"block.choruswarps.ender_link": "Якорь энда",
-	"item.choruswarps.golden_chorus_fruit": "Золотой плод хоруса",
-	"item.choruswarps.enchanted_golden_chorus_fruit": "Зачарованный золотой плод хоруса",
-	
-	"tooltip.choruswarps.not_linked": "Не привязан",
-	"tooltip.choruswarps.linked_to": "Привязан к",
-	"tooltip.choruswarps.overworld": "Верхний мир",
-	"tooltip.choruswarps.nether": "Незер",
-	"tooltip.choruswarps.end": "Энд",
-	"tooltip.choruswarps.invalid_dimension": "Неверное измерение"
+    "block.choruswarps.ender_link": "Якорь энда",
+    "item.choruswarps.golden_chorus_fruit": "Золотой плод хоруса",
+    "item.choruswarps.enchanted_golden_chorus_fruit": "Зачарованный золотой плод хоруса",
+
+    "tooltip.choruswarps.not_linked": "Не привязан",
+    "tooltip.choruswarps.linked_to": "Привязан к",
+    "tooltip.choruswarps.overworld": "Верхний мир",
+    "tooltip.choruswarps.nether": "Незер",
+    "tooltip.choruswarps.end": "Энд",
+    "tooltip.choruswarps.invalid_dimension": "Неверное измерение"
 }
