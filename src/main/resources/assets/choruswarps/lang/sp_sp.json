@@ -1,0 +1,12 @@
+{
+  "block.choruswarps.ender_link": "Vinculo Ender",
+  "item.choruswarps.golden_chorus_fruit": "Fruta Coral Dorada",
+  "item.choruswarps.enchanted_golden_chorus_fruit": "Fruta Coral Dorada Encantada",
+
+  "tooltip.choruswarps.not_linked": "No está enlazado",
+  "tooltip.choruswarps.linked_to": "Enlazado a",
+  "tooltip.choruswarps.overworld": "el Supramundo",
+  "tooltip.choruswarps.nether": "el Nether",
+  "tooltip.choruswarps.end": "el End",
+  "tooltip.choruswarps.invalid_dimension": "Dimensión inválida"
+}
