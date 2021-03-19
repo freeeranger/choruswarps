@@ -1,28 +1,22 @@
 package com.freeranger.choruswarps.items;
 
-import com.freeranger.choruswarps.blocks.EnderLinkBlock;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
+import gcom.freeranger.choruswarps.blocks.EnderLinkBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ChorusFruitItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.TranslationTextComponentFormatException;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GoldenChorusFruitItem extends ChorusFruitItem {
     public GoldenChorusFruitItem(Properties builder) {
@@ -35,90 +29,41 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResultType onItemUse(ItemUseContext context) {
         if (this.isFood()) {
-            ItemStack itemstack = playerIn.getHeldItem(handIn);
+            ItemStack itemstack = context.getItem(); //playerIn.getHeldItem(handIn);
             CompoundNBT nbt = itemstack.getTag();
             if(nbt == null) nbt = new CompoundNBT();
 
             boolean isLinked = nbt.contains("linked_x");
 
-            Vector3d blockVector = Minecraft.getInstance().objectMouseOver.getHitVec();
+            if (isLinked && !(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof EnderLinkBlock)) {
+                context.getPlayer().setActiveHand(context.getHand());
 
-            double bX = blockVector.getX(); double bY = blockVector.getY(); double bZ = blockVector.getZ();
-            double pX = Minecraft.getInstance().player.getPosX();
-            double pY = Minecraft.getInstance().player.getPosY();
-            double pZ = Minecraft.getInstance().player.getPosZ();
-
-            if(bX == Math.floor(bX) && bX <= pX){bX--;}
-            if(bY == Math.floor(bY) && bY <= pY+1){bY--;}
-            if(bZ == Math.floor(bZ) && bZ <= pZ){bZ--;}
-
-            BlockPos pos = new BlockPos(bX, bY, bZ);
-
-            if (isLinked && !(worldIn.getBlockState(pos).getBlock() instanceof EnderLinkBlock)) {
-                playerIn.setActiveHand(handIn);
-
-                BlockPos linkedBlockPos = new BlockPos(
-                        nbt.getFloat("linked_x"),
-                        nbt.getFloat("linked_y"),
-                        nbt.getFloat("linked_z")
-                );
-
-                RegistryKey<World> blockDimension = null;
-
-                ItemStack stack = playerIn.getHeldItem(handIn);
-                if(stack.getTag().getInt("dim") == 0) blockDimension = World.OVERWORLD;
-                else if(stack.getTag().getInt("dim") == -1) blockDimension = World.THE_NETHER;
-                else if(stack.getTag().getInt("dim") == 1) blockDimension = World.THE_END;
-
-                if(worldIn.isAirBlock(linkedBlockPos) && blockDimension != null
-                        && playerIn.world.getDimensionKey() == blockDimension){
-                    nbt.remove("linked_x");
-                    nbt.remove("linked_y");
-                    nbt.remove("linked_z");
-                    nbt.remove("dim");
-                    playerIn.playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
-                    return ActionResult.resultFail(itemstack);
-                }
-
-                Block linkedBlock = worldIn.getBlockState(linkedBlockPos).getBlock();
-
-                if(!(linkedBlock instanceof EnderLinkBlock) && blockDimension != null
-                        && playerIn.world.getDimensionKey() == blockDimension){
-                    nbt.remove("linked_x");
-                    nbt.remove("linked_y");
-                    nbt.remove("linked_z");
-                    nbt.remove("dim");
-                    playerIn.playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
-                    return ActionResult.resultFail(itemstack);
-                }
-
-                return ActionResult.resultConsume(itemstack);
+                return ActionResultType.CONSUME;
             } else {
-                if (Minecraft.getInstance().objectMouseOver.getType() == RayTraceResult.Type.BLOCK
-                        && worldIn.getBlockState(pos).getBlock() instanceof EnderLinkBlock) {
+                if (context.getWorld().getBlockState(context.getPos()).getBlock() instanceof EnderLinkBlock) {
 
-                    nbt.putFloat("linked_x", pos.getX());
-                    nbt.putFloat("linked_y", pos.getY());
-                    nbt.putFloat("linked_z", pos.getZ());
+                    nbt.putFloat("linked_x", context.getPos().getX());
+                    nbt.putFloat("linked_y", context.getPos().getY());
+                    nbt.putFloat("linked_z", context.getPos().getZ());
 
-                    if(worldIn.getDimensionKey() == World.OVERWORLD) nbt.putInt("dim", 0);
-                    else if(worldIn.getDimensionKey() == World.THE_NETHER) nbt.putInt("dim", -1);
-                    else if(worldIn.getDimensionKey() == World.THE_END) nbt.putInt("dim", 1);
+                    if(context.getWorld().getDimensionKey() == World.OVERWORLD) nbt.putInt("dim", 0);
+                    else if(context.getWorld().getDimensionKey() == World.THE_NETHER) nbt.putInt("dim", -1);
+                    else if(context.getWorld().getDimensionKey() == World.THE_END) nbt.putInt("dim", 1);
                     else nbt.putInt("dim", 9999);
 
                     nbt.putBoolean("linked", true);
                     itemstack.setTag(nbt);
-                    playerIn.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 2f, 1f);
+                    context.getPlayer().playSound(SoundEvents.ENTITY_CHICKEN_EGG, 2f, 1f);
                 }
                 if(!nbt.contains("linked_x")){
-                    playerIn.playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
+                    context.getPlayer().playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
                 }
-                return ActionResult.resultFail(itemstack);
+                return ActionResultType.FAIL;
             }
         } else {
-            return ActionResult.resultPass(playerIn.getHeldItem(handIn));
+            return ActionResultType.PASS;
         }
     }
 
@@ -159,30 +104,27 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
             }else{
                 if(tooltip.size() > 1) {
                     tooltip.set(1, new StringTextComponent("\u00A7f"+notLinked));
-                }else tooltip.add(1, new StringTextComponent("\u00A7f"+notLinked));
+                }else tooltip.add(new StringTextComponent("\u00A7f"+notLinked));
             }
         }else{
             if(tooltip.size() > 1)
                 tooltip.set(1, new StringTextComponent("\u00A7f"+notLinked));
-            else tooltip.add(1, new StringTextComponent("\u00A7f"+notLinked));
+            else tooltip.add(new StringTextComponent("\u00A7f"+notLinked));
         }
     }
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if(!(entityLiving instanceof ServerPlayerEntity)){
+        if(!(entityLiving instanceof ServerPlayerEntity) || stack.getTag()==null){
             return stack;
         }
 
         ServerPlayerEntity player = (ServerPlayerEntity)entityLiving;
 
-        if (entityLiving.isPassenger()) {
-            entityLiving.stopRiding();
-        }
-
         float targetX = stack.getTag().getFloat("linked_x");
         float targetY = stack.getTag().getFloat("linked_y");
         float targetZ = stack.getTag().getFloat("linked_z");
+        BlockPos linkedBlockPos = new BlockPos(targetX, targetY, targetZ);
 
         RegistryKey<World> blockDimension;
         if(stack.getTag().getInt("dim") == 0) blockDimension = World.OVERWORLD;
@@ -191,6 +133,20 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
         else return stack;
 
         if(player.world.getDimensionKey() != blockDimension) return stack;
+
+        if (!(worldIn.getBlockState(linkedBlockPos).getBlock() instanceof EnderLinkBlock)){
+            CompoundNBT nbt = stack.getTag();
+            nbt.remove("linked_x");
+            nbt.remove("linked_y");
+            nbt.remove("linked_z");
+            nbt.remove("dim");
+            player.playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
+            return stack;
+        }
+
+        if (entityLiving.isPassenger()) {
+            entityLiving.stopRiding();
+        }
 
         boolean hasTeleported = safeTeleport(player, targetX, targetY, targetZ);
 
@@ -205,9 +161,9 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
 
     boolean safeTeleport(PlayerEntity player, float x, float y, float z){
         BlockPos[] positions = new BlockPos[9];
-        positions[0] = new BlockPos(x, y, z);
-        positions[1] = new BlockPos(x, y+1f, z);
-        positions[2] = new BlockPos(x, y+2f, z);
+        positions[0] = new BlockPos(x, y+1f, z);
+        positions[1] = new BlockPos(x, y+2f, z);
+        positions[2] = new BlockPos(x, y, z);
         positions[3] = new BlockPos(x+1f, y, z);
         positions[4] = new BlockPos(x-1f, y, z);
         positions[5] = new BlockPos(x, y, z+1f);
