@@ -1,6 +1,6 @@
 package com.freeranger.choruswarps.items;
 
-import gcom.freeranger.choruswarps.blocks.EnderLinkBlock;
+import com.freeranger.choruswarps.blocks.EnderLinkBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
