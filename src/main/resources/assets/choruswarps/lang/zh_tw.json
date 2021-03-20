@@ -1,0 +1,12 @@
+{
+  "block.choruswarps.ender_link": "終界樞紐",
+  "item.choruswarps.golden_chorus_fruit": "黃金歌萊果",
+  "item.choruswarps.enchanted_golden_chorus_fruit": "附魔黃金歌萊果",
+
+  "tooltip.choruswarps.not_linked": "沒有任何建立連接",
+  "tooltip.choruswarps.linked_to": "連接已建立，座標：",
+  "tooltip.choruswarps.overworld": "主世界",
+  "tooltip.choruswarps.nether": "地獄",
+  "tooltip.choruswarps.end": "終界",
+  "tooltip.choruswarps.invalid_dimension": "未知維度"
+}

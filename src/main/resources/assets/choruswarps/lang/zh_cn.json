@@ -1,0 +1,12 @@
+{
+  "block.choruswarps.ender_link": "末影枢纽",
+  "item.choruswarps.golden_chorus_fruit": "黄金紫颂果",
+  "item.choruswarps.enchanted_golden_chorus_fruit": "附魔黄金紫颂果",
+
+  "tooltip.choruswarps.not_linked": "没有任何建立连接",
+  "tooltip.choruswarps.linked_to": "连接已建立，坐标：",
+  "tooltip.choruswarps.overworld": "主世界",
+  "tooltip.choruswarps.nether": "下界",
+  "tooltip.choruswarps.end": "末地",
+  "tooltip.choruswarps.invalid_dimension": "未知维度"
+}
