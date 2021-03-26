@@ -7,6 +7,13 @@
   "tooltip.choruswarps.linked_to": "Linked to",
   "tooltip.choruswarps.overworld": "Overworld",
   "tooltip.choruswarps.nether": "Nether",
-  "tooltip.choruswarps.end": "End",
+  "tooltip.choruswarps.end": "The End",
+  "tooltip.choruswarps.abyss": "The Abyss",
+  "tooltip.choruswarps.undergarden": "The Undergarden",
+  "tooltip.choruswarps.bumblezone": "The Bumblezone",
+  "tooltip.choruswarps.ratlantis": "Ratlantis",
+  "tooltip.choruswarps.gaia": "Gaia",
+  "tooltip.choruswarps.neverdark": "Neverdark",
+  "tooltip.choruswarps.terridus": "Terridus",
   "tooltip.choruswarps.invalid_dimension": "Invalid Dimension"
 }

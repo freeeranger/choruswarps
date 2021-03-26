@@ -8,5 +8,12 @@
   "tooltip.choruswarps.overworld": "主世界",
   "tooltip.choruswarps.nether": "下界",
   "tooltip.choruswarps.end": "末地",
+  "tooltip.choruswarps.abyss": "The Abyss",
+  "tooltip.choruswarps.undergarden": "The Undergarden",
+  "tooltip.choruswarps.bumblezone": "黄蜂领域",
+  "tooltip.choruswarps.ratlantis": "Ratlantis",
+  "tooltip.choruswarps.gaia": "Gaia",
+  "tooltip.choruswarps.neverdark": "Neverdark",
+  "tooltip.choruswarps.terridus": "Terridus",
   "tooltip.choruswarps.invalid_dimension": "未知维度"
 }

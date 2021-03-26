@@ -8,5 +8,12 @@
   "tooltip.choruswarps.overworld": "Powierzchnia",
   "tooltip.choruswarps.nether": "Nether",
   "tooltip.choruswarps.end": "End",
+  "tooltip.choruswarps.abyss": "Abyss",
+  "tooltip.choruswarps.undergarden": "The Undergarden",
+  "tooltip.choruswarps.bumblezone": "Bumblezone",
+  "tooltip.choruswarps.ratlantis": "Ratlantis",
+  "tooltip.choruswarps.gaia": "Gaia",
+  "tooltip.choruswarps.neverdark": "Neverdark",
+  "tooltip.choruswarps.terridus": "Terridus",
   "tooltip.choruswarps.invalid_dimension": "Nie poprawny wymiar"
 }
