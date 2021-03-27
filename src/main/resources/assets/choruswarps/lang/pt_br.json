@@ -1,0 +1,19 @@
+{
+  "block.choruswarps.ender_link": "Elo de ender",
+  "item.choruswarps.golden_chorus_fruit": "Fruta do coro dourada",
+  "item.choruswarps.enchanted_golden_chorus_fruit": "Fruta do coro dourada encantada",
+
+  "tooltip.choruswarps.not_linked": "Não-conectada",
+  "tooltip.choruswarps.linked_to": "Conectada a",
+  "tooltip.choruswarps.overworld": "Superfície",
+  "tooltip.choruswarps.nether": "Nether",
+  "tooltip.choruswarps.end": "End",
+  "tooltip.choruswarps.abyss": "Abyss",
+  "tooltip.choruswarps.undergarden": "Undergarden",
+  "tooltip.choruswarps.bumblezone": "Bumblezone",
+  "tooltip.choruswarps.ratlantis": "Ratlantis",
+  "tooltip.choruswarps.gaia": "Gaia",
+  "tooltip.choruswarps.neverdark": "Neverdark",
+  "tooltip.choruswarps.terridus": "Terridus",
+  "tooltip.choruswarps.invalid_dimension": "Dimensão inválida"
+}
