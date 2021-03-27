@@ -8,5 +8,12 @@
     "tooltip.choruswarps.overworld": "Верхний мир",
     "tooltip.choruswarps.nether": "Незер",
     "tooltip.choruswarps.end": "Энд",
+    "tooltip.choruswarps.abyss": "Бездна",
+    "tooltip.choruswarps.undergarden": "The Undergarden",
+    "tooltip.choruswarps.bumblezone": "The Bumblezone",
+    "tooltip.choruswarps.ratlantis": "Ратлантис",
+    "tooltip.choruswarps.gaia": "Гайя",
+    "tooltip.choruswarps.neverdark": "Neverdark",
+    "tooltip.choruswarps.terridus": "Terridus",
     "tooltip.choruswarps.invalid_dimension": "Неверное измерение"
 }

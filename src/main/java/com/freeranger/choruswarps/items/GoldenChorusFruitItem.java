@@ -48,10 +48,7 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
                     nbt.putFloat("linked_y", context.getPos().getY());
                     nbt.putFloat("linked_z", context.getPos().getZ());
 
-                    if(context.getWorld().getDimensionKey() == World.OVERWORLD) nbt.putInt("dim", 0);
-                    else if(context.getWorld().getDimensionKey() == World.THE_NETHER) nbt.putInt("dim", -1);
-                    else if(context.getWorld().getDimensionKey() == World.THE_END) nbt.putInt("dim", 1);
-                    else nbt.putInt("dim", 9999);
+                    nbt.putString("dimension", context.getWorld().getDimensionKey().getLocation().toString());
 
                     nbt.putBoolean("linked", true);
                     itemstack.setTag(nbt);
@@ -81,17 +78,55 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
         String overworld = new TranslationTextComponent("tooltip.choruswarps.overworld").getString();
         String nether = new TranslationTextComponent("tooltip.choruswarps.nether").getString();
         String end = new TranslationTextComponent("tooltip.choruswarps.end").getString();
+        String abyss = new TranslationTextComponent("tooltip.choruswarps.abyss").getString();
+        String undergarden = new TranslationTextComponent("tooltip.choruswarps.undergarden").getString();
+        String bumblezone = new TranslationTextComponent("tooltip.choruswarps.bumblezone").getString();
+        String ratlantis = new TranslationTextComponent("tooltip.choruswarps.ratlantis").getString();
+        String gaia = new TranslationTextComponent("tooltip.choruswarps.gaia").getString();
+        String neverdark = new TranslationTextComponent("tooltip.choruswarps.neverdark").getString();
+        String terridus = new TranslationTextComponent("tooltip.choruswarps.terridus").getString();
         String invalidDimension = new TranslationTextComponent("tooltip.choruswarps.invalid_dimension").getString();
 
         if (stack.getTag() != null) {
-            if(stack.getTag().contains("linked_x") && stack.getTag().contains("dim")){
-                int dim = stack.getTag().getInt("dim");
-
-                if(dim == 0) dimension = overworld;
-                else if(dim == -1) dimension = nether;
-                else if(dim == 1) dimension = end;
-                else {
+            if(stack.getTag().contains("linked_x") && stack.getTag().contains("dimension")){
+                String dim = stack.getTag().getString("dimension");
+                if(dim == "")
                     dimension = invalidDimension;
+                else{
+                    switch(dim){
+                        case "minecraft:overworld":
+                            dimension = overworld;
+                            break;
+                        case "minecraft:the_nether":
+                            dimension = nether;
+                            break;
+                        case "minecraft:the_end":
+                            dimension = end;
+                            break;
+                        case "theabyss:theabyssdim":
+                            dimension = abyss;
+                            break;
+                        case "undergarden:undergarden":
+                            dimension = undergarden;
+                            break;
+                        case "the_bumblezone:the_bumblezone":
+                            dimension = bumblezone;
+                            break;
+                        case "rats:ratlantis":
+                            dimension = ratlantis;
+                            break;
+                        case "gaiadimension:gaia_dimension":
+                            dimension = gaia;
+                            break;
+                        case "neverdark:neverdark_abyss":
+                            dimension = neverdark;
+                            break;
+                        case "terridus:terridus":
+                            dimension = terridus;
+                            break;
+                        default:
+                            dimension = dim;
+                    }
                 }
 
                 tooltip.add(new StringTextComponent(
@@ -126,20 +161,16 @@ public class GoldenChorusFruitItem extends ChorusFruitItem {
         float targetZ = stack.getTag().getFloat("linked_z");
         BlockPos linkedBlockPos = new BlockPos(targetX, targetY, targetZ);
 
-        RegistryKey<World> blockDimension;
-        if(stack.getTag().getInt("dim") == 0) blockDimension = World.OVERWORLD;
-        else if(stack.getTag().getInt("dim") == -1) blockDimension = World.THE_NETHER;
-        else if(stack.getTag().getInt("dim") == 1) blockDimension = World.THE_END;
-        else return stack;
+        String blockDim = stack.getTag().getString("dimension");
 
-        if(player.world.getDimensionKey() != blockDimension) return stack;
+        if(!(player.world.getDimensionKey().getLocation().toString().equals(blockDim))) return stack;
 
         if (!(worldIn.getBlockState(linkedBlockPos).getBlock() instanceof EnderLinkBlock)){
             CompoundNBT nbt = stack.getTag();
             nbt.remove("linked_x");
             nbt.remove("linked_y");
             nbt.remove("linked_z");
-            nbt.remove("dim");
+            nbt.remove("dimension");
             player.playSound(SoundEvents.ENTITY_DROWNED_STEP, 2f, 1f);
             return stack;
         }

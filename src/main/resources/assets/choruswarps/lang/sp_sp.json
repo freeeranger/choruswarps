@@ -8,5 +8,12 @@
   "tooltip.choruswarps.overworld": "el Supramundo",
   "tooltip.choruswarps.nether": "el Nether",
   "tooltip.choruswarps.end": "el End",
+  "tooltip.choruswarps.abyss": "el Abyss",
+  "tooltip.choruswarps.undergarden": "el Undergarden",
+  "tooltip.choruswarps.bumblezone": "el Bumblezone",
+  "tooltip.choruswarps.ratlantis": "Ratlantis",
+  "tooltip.choruswarps.gaia": "Gaia",
+  "tooltip.choruswarps.neverdark": "Neverdark",
+  "tooltip.choruswarps.terridus": "Terridus",
   "tooltip.choruswarps.invalid_dimension": "Dimensión inválida"
 }
